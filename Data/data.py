@@ -1,14 +1,36 @@
-import csv
-file = open("sales_data.csv", "w")
-writer = csv.writer(file, delimiter=',')
-l = ["Date","Product","Category","Price","Quantity"]
-l1 = [["2024-01-01","Coke","Beverages",20,5],
-["2024-01-01","Pepsi","Beverages",18,3],
-["2024-01-02","Milk","Dairy",52,4],
-["2024-01-02","Bread","Bakery",30,6],
-["2024-01-03","Eggs","Dairy",6,12],
-["2024-01-03","Biscuits","Snacks",15,8],
-["2024-01-04","Chips","Snacks",20,10],
-["2024-01-05","Water","Beverages",25,7]]
-writer.writerow(l)
-writer.writerows(l1)
+import pandas as pd
+import random
+from datetime import datetime, timedelta
+
+def generate_sales_data(rows=500):
+    products = [
+        ("Coke", "Beverages", 20),
+        ("Pepsi", "Beverages", 18),
+        ("Water", "Beverages", 25),
+        ("Milk", "Dairy", 52),
+        ("Eggs", "Dairy", 6),
+        ("Bread", "Bakery", 30),
+        ("Biscuits", "Snacks", 15),
+        ("Chips", "Snacks", 20),
+    ]
+
+    start_date = datetime(2024, 1, 1)
+    data = []
+
+    for _ in range(rows):
+        product, category, price = random.choice(products)
+        quantity = random.randint(1, 15)
+        date = start_date + timedelta(days=random.randint(0, 120))
+
+        data.append([date, product, category, price, quantity])
+
+    df = pd.DataFrame(
+        data,
+        columns=["Date", "Product", "Category", "Price", "Quantity"]
+    )
+
+    df.to_csv("D:/cs/Data Analysis Project/Data/sales_data.csv", index=False)
+    print("Sales dataset generated successfully!")
+
+if __name__ == "__main__":
+    generate_sales_data()
