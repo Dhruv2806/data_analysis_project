@@ -27,15 +27,27 @@ and clean project structuring suitable for real-world use.
 ---
 
 ## Project Structure
+
 Data Analysis Project:
+
 ── Data/
+
   ── sales_data.csv # Raw sales data
+  
 ── Src/
+
   ── data_cleaning.py # Data loading
+  
   ── eda.py # Data analysis & visualization
+  
   ── model.py # Linear regression model
+  
 ── outputs/plots
+
   ── sales_trend.png # Generated sales trend graph
+  
 ── main.py # Entry point
+
 ── requirements.txt # Required python libraries
+
 ── README.md  #Description of the project
